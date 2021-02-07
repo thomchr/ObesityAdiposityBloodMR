@@ -1,0 +1,137 @@
+---
+title: "MVMR.WHRadjBMI.VuckovicHGB.CAD"
+author: "Chris Thom"
+date: "2/7/21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Start Up
+```{r message=FALSE}
+library(MVMR)
+library(TwoSampleMR)
+library(MRPRESSO)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(data.table)
+
+setwd("/Users/thomc/Desktop/Smk.BMI.Blood.MR/MVMR.WHRadjBMI.Hgb.CAD/")
+
+
+```
+
+
+### Load data
+```{r message=FALSE}
+
+if( file.exists("SmkInit.filtered.txt") & file.exists("WHRadjBMI.filtered.txt") & file.exists("HGB.filtered.txt")) { 
+  print("Working from pre-tabulated files")
+  e1_comm <- fread("WHRadjBMI.filtered.txt", header=T)
+  e2_comm <- fread("HGB.filtered.txt", header=T)
+  out_comm <- fread("CAD.filtered.txt", header=T)
+  
+} else { 
+  print("Loading summ stats and making filtered files")
+  e1 <- fread("/Volumes/4TB.RNAseq/GWASdata/whradjbmi.giant-ukbb.meta-analysis.combined.23May2018.txt", header=T)
+  e1$Phenotype <- "WHRadjBMI"
+  e1$SNP <- gsub("[A-Z]|:", "", e1$SNP) #bc WHRadjBMI has rsID:Allele:Allele
+  e1$ChrPosRefAlt <- paste0(e1$CHR, ":", e1$POS, "_", e1$Tested_Allele, "_", e1$Other_Allele)
+  e1$ChrPosAltRef <- paste0(e1$CHR, ":", e1$POS, "_", e1$Other_Allele, "_", e1$Tested_Allele)
+  
+  
+  e2 <- fread("/Volumes/4TB.RNAseq/GWASdata/BCX2_HGB_EA_GWAMA.out.gz", header=T)
+  e2$Phenotype <- "HGB"
+  
+  
+  out <- fread("/Volumes/4TB.RNAseq/GWASdata/CADMeta.anno.forMR", header=T)
+  out$Phenotype <- "CAD"
+  
+  
+  e1_comm <- e1[e1$SNP %in% out$SNP,] 
+  e1_a <- e1_comm[e1_comm$ChrPosRefAlt %in% e2$rs_number,]
+  e1_b <- e1_comm[e1_comm$ChrPosAltRef %in% e2$rs_number,]
+  e2_comm <- bind_rows(e1_a,e1_b)
+  
+  out_comm <- out[out$SNP %in% e1_comm$SNP,]
+
+  e1_joina <- left_join(e1_a, e2, by = c("ChrPosRefAlt" = "rs_number"))
+  e1_joinb <- left_join(e1_b, e2, by = c("ChrPosAltRef" = "rs_number"))
+  e2_comm <- bind_rows(e1_joina, e1_joinb)
+  
+  write.table(e1_comm, "WHRadjBMI.filtered.txt", sep="\t", quote= FALSE, row.names = FALSE, col.names = TRUE)
+  write.table(e2_comm, "HGB.filtered.txt", sep="\t", quote= FALSE, row.names = FALSE, col.names = TRUE)
+  write.table(out_comm, "CAD.filtered.txt", sep="\t", quote= FALSE, row.names = FALSE, col.names = TRUE)
+}
+
+
+```
+
+
+### Clump - want this separate in case want to change clumping parameters
+```{r message=FALSE}
+
+if( file.exists("SmkInit.Clumped") & file.exists("WHRadjBMI.Clumped") & file.exists("HGB.Clumped")) { 
+  print("Working from pre-tabulated clump files")
+  e1_clump <- fread("WHRadjBMI.Clumped", header=T)
+  e2_clump <- fread("SmkInit.Clumped", header=T)
+  out_clump <- fread("HGB.Clumped", header=T)
+  
+} else { 
+  
+e1_sig <- subset(e1_comm, P <= 5E-8)
+e1_clump <- format_data(e1_sig, type="exposure", snps=e1_sig$SNP, header=T, phenotype_col = "Phenotype", 
+  	      snp_col="SNP", beta_col="BETA", se_col="SE", 
+				  eaf_col="Freq_Tested_Allele", effect_allele_col="Tested_Allele", other_allele_col="Other_Allele", pval_col="P")
+e1_clump <- clump_data(e1_clump, clump_kb = 500, clump_r2 = 0.01)
+write.table(e1_clump, file = "WHRadjBMI.Clumped", sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+
+e2_clump <- e2_comm[e2_comm$SNP %in% e1_clump$SNP]
+e2_clump <- format_data(e2_clump, type="exposure", snps=e2_clump$SNP, header=T, phenotype_col = "Phenotype.y", 
+  	      snp_col="SNP", beta_col="beta", se_col="se", 
+				  eaf_col="eaf", effect_allele_col="reference_allele", other_allele_col="other_allele", pval_col="p-value")
+write.table(e2_clump, file = "HGB.Clumped", sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+
+out_clump <- out_comm %>% filter(SNP %in% e1_clump$SNP)
+out_clump <- format_data(out_clump, type="outcome", snps=out_clump$SNP, header=T, phenotype_col = "Phenotype",
+                     snp_col="SNP",
+                     beta_col="beta", se_col="se",
+                     eaf_col="eaf", effect_allele_col="effect_allele",
+                     other_allele_col="other_allele", pval_col="pval")
+write.table(out_clump, file = "CAD.Clumped", sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+}
+
+```
+
+
+### MVMR
+```{r message=FALSE}
+
+e1.harm <- harmonise_data(exposure_dat = e1_clump, outcome_dat = out_clump)
+e2.harm <- harmonise_data(exposure_dat = e2_clump, outcome_dat = out_clump)
+
+combined.e1_e2 <- merge(select(e1.harm, SNP, beta.exposure, se.exposure, beta.outcome, se.outcome), 
+                          select(e2.harm, SNP, beta.exposure, se.exposure, beta.outcome, se.outcome),
+                          by="SNP")
+
+write.table(combined.e1_e2, "MVMR.IV.txt", row.names=F)
+
+mvmr_in <- format_mvmr(BXGs = select(combined.e1_e2, beta.exposure.x, beta.exposure.y), 
+            BYG = combined.e1_e2$beta.outcome.x, 
+            seBXGs = select(combined.e1_e2, se.exposure.x, se.exposure.y),
+            seBYG = combined.e1_e2$se.outcome.x,
+            RSID = combined.e1_e2$SNP)
+rownames(mvmr_in) <- mvmr_in$SNP
+
+mvmr_out <- mvmr(mvmr_in, gencov = 0, weights = 1)
+
+```
+
+
