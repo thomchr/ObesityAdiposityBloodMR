@@ -2,6 +2,6 @@ These are instrumental variables used in our study. Please reach out with questi
 
 MR.IVs are univariable MR IVs. Nomenclature is generally Exposure.Outcome.IV.txt.gz
 
-MVMR.IVs are for multivariable experiments. Nomenclature is generally Exposure1.Exposure2.Outcome.IV.txt.gz
+IVs used for MR-Steiger analysis are specified as well.
 
-In some cases we double-checked effect sizes for multivariable IVs in univariable experiments - those IVs are within MVMR.IVs but labeled *TwoSample.IV.txt.gz 
+MVMR.IVs are for multivariable experiments. Nomenclature is generally Exposure1.Exposure2.Outcome.MVMR.IV.txt.gz, or Exposure1.Exposure2Exposure3.Outcome.MVMR.IV.txt.gz in cases where multiple mediators are considered 
