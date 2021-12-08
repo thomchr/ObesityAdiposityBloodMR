@@ -1,6 +1,6 @@
 # Obesity and adiposity have opposing genetic impacts on human blood traits
 
-Christopher S Thom1,* , Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,5,*
+Christopher S Thom1,6 , Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,5,6
 
 1Division of Neonatology, Children’s Hospital of Philadelphia, Philadelphia, PA, USA
 2Division of Hematology, Children’s Hospital of Philadelphia, Philadelphia, PA, USA
@@ -8,7 +8,7 @@ Christopher S Thom1,* , Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,
 4Department of Genetics, University of Perelman School of Medicine, Philadelphia, PA, USA
 5Institute for Translational Medicine, University of Perelman School of Medicine, Philadelphia, PA, USA
 
-* Correspondence:
+6 Correspondence:
 Christopher S Thom
 thomc@chop.edu
 Children’s Hospital of Philadelphia
@@ -22,6 +22,9 @@ Smilow Center for Translational Research, Room 10-126
 3400 Civic Center Blvd
 Philadelphia, PA 19104	
 
+
+
+Obesity, hyperlipidemia, and truncal adiposity concordantly elevate cardiovascular disease risks, but have unknown genetic effects on blood trait variation. Using Mendelian randomization, we define unexpectedly opposing roles for generalized obesity and truncal adiposity on blood traits. Elevated genetically determined body mass index (BMI) and lipid levels decreased hemoglobin and hematocrit levels, explaining consistent with clinical observations associating obesity and anemia. However, lipid-related effects were confined to erythroid traits, whereas BMI affected multiple blood lineages, indicating broad effects on hematopoiesis. BMI-related effects were unexpectedly opposed by truncal adipose distribution, which increased hemoglobin and blood cell counts across lineages. Conditional analyses indicated genes, pathways, and cell types responsible for these effects, including Leptin Receptor and other blood cell-extrinsic factors in adipocytes and endothelium, which regulate hematopoietic stem and progenitor cell biology. Our findings identify novel roles for obesity and adipose distribution on hematopoiesis and show that genetically determined adiposity plays a previously underappreciated role in determining blood cell formation and function.
 
 
 
