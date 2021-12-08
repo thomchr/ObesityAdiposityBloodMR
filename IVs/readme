@@ -1,0 +1,7 @@
+These are instrumental variables used in our study. Please reach out with questions or clarifications (thomc@chop.edu).
+
+MR.IVs are univariable MR IVs. Nomenclature is generally Exposure.Outcome.IV.txt.gz
+
+MVMR.IVs are for multivariable experiments. Nomenclature is generally Exposure1.Exposure2.Outcome.IV.txt.gz
+
+In some cases we double-checked effect sizes for multivariable IVs in univariable experiments - those IVs are within MVMR.IVs but labeled *TwoSample.IV.txt.gz 
