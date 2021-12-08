@@ -1,6 +1,6 @@
 # Obesity and adiposity have opposing genetic impacts on human blood traits
 
-Christopher S Thom1,*, Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,5,*
+Christopher S Thom1,* , Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,5,*
 
 1Division of Neonatology, Children’s Hospital of Philadelphia, Philadelphia, PA, USA
 2Division of Hematology, Children’s Hospital of Philadelphia, Philadelphia, PA, USA
@@ -8,7 +8,7 @@ Christopher S Thom1,*, Madison B Wilken1, Stella T Chou,2 Benjamin F Voight3,4,5
 4Department of Genetics, University of Perelman School of Medicine, Philadelphia, PA, USA
 5Institute for Translational Medicine, University of Perelman School of Medicine, Philadelphia, PA, USA
 
-*Correspondence:
+* Correspondence:
 Christopher S Thom
 thomc@chop.edu
 Children’s Hospital of Philadelphia
