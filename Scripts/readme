@@ -1,7 +1,7 @@
-These are scripts that were used to take GWAS summary statistics, filter them for common variants (after which the exposure of interest was manually clumped using the TwoSampleMR package), and run univariable or multivariable MR.
+These are scripts that were used to take GWAS summary statistics, filter them for common variants (after which the exposure of interest was manually clumped using the TwoSampleMR package), and run analyses.
 
 MR.IVs are univariable MR IVs. Nomenclature is generally Exposure.Outcome.IV.txt.gz
 
-IVs used for MR-Steiger analysis are specified as well.
-
 MVMR.IVs are for multivariable experiments. Nomenclature is generally Exposure1.Exposure2.Outcome.MVMR.IV.txt.gz, or Exposure1.Exposure2Exposure3.Outcome.MVMR.IV.txt.gz in cases where multiple mediators are considered 
+
+Scripts to produce IVs used for MR-Steiger analysis are specified as well, as are example scripts used for Mediation analyses.
