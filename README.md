@@ -47,3 +47,24 @@ Vuckovic D, Bao EL, Akbari P, Lareau CA, Mousas A, Jiang T, Chen MH, Raffield LM
 
 Lipid trait summary statistics were obtained from Klarin et al
 Klarin D, Damrauer SM, Cho K, Sun Y V., Teslovich TM, Honerlaw J, Gagnon DR, DuVall SL, Li J, Peloso GM, Chaffin M, Small AM, Huang J, Tang H, Lynch JA, Ho YL, Liu DJ, Emdin CA, Li AH, Huffman JE, Lee JS, Natarajan P, Chowdhury R, Saleheen D, Vujkovic M, Baras A, Pyarajan S, Di Angelantonio E, Neale BM, Naheed A, Khera A V., Danesh J, Chang KM, Abecasis G, Willer C, Dewey FE, Carey DJ, Concato J, Gaziano JM, O’Donnell CJ, Tsao PS, Kathiresan S, Rader DJ, Wilson PWF, Assimes TL. 2018. Genetics of blood lipids among ~300,000 multi-ethnic participants of the Million Veteran Program. Nat Genet 50:1514–1523.
+
+# Software packages used (and a general workflow for our study)
+
+Scripts utilized R, python, and linux platforms
+
+
+
+We created instrumental variables and performed MR (univariable and multivariable) on GWAS summary statistics derived from the studies cited above
+
+TwoSampleMR (https://mrcieu.github.io/TwoSampleMR/)
+
+MVMR (https://github.com/WSpiller/MVMR)
+
+
+Based on our MR findings, we explored conditional GWAS analyses to define novel loci, genes and related biology
+
+GCTA (https://yanglab.westlake.edu.cn/software/gcta/#Overview), specifically the mtCOJO package (https://yanglab.westlake.edu.cn/software/gcta/#mtCOJO)
+
+
+We created figures using Inkscape, BioRender (BioRender.com), GraphPad Prism, and LocusZoom (http://locuszoom.org/)
+
