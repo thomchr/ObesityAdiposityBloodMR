@@ -1,0 +1,3 @@
+These are scripts that were used to take GWAS summary statistics, filter them for common variants (after which the exposure of interest was manually clumped using the TwoSampleMR package), and run univariable or multivariable MR.
+
+The script to analyze IV strength is also included.
