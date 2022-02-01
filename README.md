@@ -31,6 +31,8 @@ Philadelphia, PA 19104
 
 Body mass index (BMI), hyperlipidemia, and truncal adipose distribution concordantly elevate cardiovascular disease risks, but have unknown genetic effects on blood trait variation. Using Mendelian randomization, we define unexpectedly opposing roles for increased BMI and truncal adipose distribution on blood traits. Elevated genetically determined BMI and lipid levels decreased hemoglobin and hematocrit levels, consistent with clinical observations associating obesity and anemia. We found that lipid-related effects were confined to erythroid traits. In contrast, BMI affected multiple blood lineages, indicating broad effects on hematopoiesis. Increased truncal adipose distribution opposed BMI effects, increasing hemoglobin and blood cell counts across lineages. Conditional analyses indicated genes, pathways, and cell types responsible for these effects, including Leptin Receptor and other blood cell-extrinsic factors in adipocytes and endothelium that regulate hematopoietic stem and progenitor cell biology. Our findings identify novel roles for obesity on hematopoiesis, including a previously underappreciated role for genetically determined adipose distribution in determining blood cell formation and function.
 
+A preprint for this manuscript is available: https://www.biorxiv.org/content/10.1101/2021.11.05.467482v1
+
 
 
 # GWAS summary statistics repositories
