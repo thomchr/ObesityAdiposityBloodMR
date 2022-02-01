@@ -1,4 +1,4 @@
-These are instrumental variables used in our study. Please reach out with questions or clarifications (thomc@chop.edu).
+These are exemplary instrumental variables used in our study, which can be replicated using summary statistics and included scripts (see Scripts branch). Please also reach out with questions or clarifications and we can send you a compiled IVs (thomc@chop.edu).
 
 MR.IVs are univariable MR IVs. Nomenclature is generally Exposure.Outcome.IV.txt.gz
 
